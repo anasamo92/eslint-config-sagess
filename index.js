@@ -25,11 +25,22 @@ module.exports = {
     ],
     'globals': {
         '__API_ROOT__': false,
+        '__LEGACY_SEARCH_API__': false,
         '__BASE_URL__': false,
         '__DEV__': false,
         '__ANCHOR_CLASS__': false,
         '__PACKAGE_JSON_PATH__': false,
+        '__USER__': false,
+        '__PROJECT__': false,
+        'jQuery': false,
+        '$': true,
+        'Focus': true,
+        'FocusComponents': true,
         'require': true,
+        'Backbone': true,
+        'React': true,
+        'Fmk': true,
+        '_': true,
         'Promise': true,
         'module': true
     },
@@ -42,7 +53,7 @@ module.exports = {
         // analysis/correctness
         // Check if import can be resolved on file system
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md
-        'import/no-unresolved': 'error', // In case of alias, this should be handled with eslint-import-resolver-webpack
+        'import/no-unresolved': 'error',
         // Check if the import is correctly done, according to the named export, or the default one
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/named.md
         'import/named': 'error',
@@ -99,7 +110,7 @@ module.exports = {
         // Warning when using litterals (should be wrapped in JSX, like {'toto'})
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
         'react/jsx-no-literals': 'warn',
-        // Error when using component, without import or declaration
+        // Error when using component, without import or declaration 
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md
         'react/jsx-no-undef': 'error',
         // 'react/jsx-sort-prop-types': 'error',
@@ -107,7 +118,7 @@ module.exports = {
         // Error when using JSX, when missing React variable
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
         'react/jsx-uses-react': 'error',
-        // Marking variable used in JSX as used
+        // Marking variable used in JSX as used 
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md
         'react/jsx-uses-vars': 'error',
         // Error when using component not in Pascal Case
@@ -124,7 +135,7 @@ module.exports = {
         'react/no-did-mount-set-state': ['warn', 'disallow-in-func'],
         // Error when using setState in didUpdate
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-did-update-set-state.md
-        'react/no-did-update-set-state': ['warn', 'disallow-in-func'],
+        'react/no-did-update-set-state': ['error', 'disallow-in-func'],
         // Error when trying to mutate the state directly
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
         'react/no-direct-mutation-state': 'error',
@@ -136,8 +147,8 @@ module.exports = {
         'react/prefer-stateless-function': ['warn', { 'ignorePureComponents': true }],
         // Error when declaring mutiple component in one file
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
-        'react/no-multi-comp': ['warn', { 'ignoreStateless': true }],
-        // Error on unknown DOM property
+        'react/no-multi-comp': ['error', { 'ignoreStateless': true }],
+        // Error on unknown DOM property 
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
         'react/no-unknown-property': 'error',
         // Warning on missing prop types
@@ -162,8 +173,8 @@ module.exports = {
             'require': {
                 'FunctionDeclaration': true,
                 'MethodDefinition': true,
-                'ClassDeclaration': false, // Disabling because of decorators
-                'ArrowFunctionExpression': false // Documenting lambda is too much
+                'ClassDeclaration': true,
+                'ArrowFunctionExpression': true
             }
         }],
         // Warning uncomplete comments
@@ -179,9 +190,9 @@ module.exports = {
         // Error if not using simple quotes
         // http://eslint.org/docs/rules/quotes
         'quotes': ['error', 'single', 'avoid-escape'],
-        // Error if not using ===
+        // Error if not using === 
         // http://eslint.org/docs/rules/eqeqeq
-        eqeqeq: ['error', 'always', { null: 'ignore' }],
+        'eqeqeq': 'error',
         'strict': 'error',
         // Error if using not camelcase variables
         // http://eslint.org/docs/rules/camelcase
@@ -191,7 +202,7 @@ module.exports = {
         'no-underscore-dangle': 'off',
         // Constructor should begin with capital letter
         // http://eslint.org/docs/rules/new-cap
-        'new-cap': 'warn',
+        'new-cap': 'error',
         // Error if not using single quotes in JSX
         // http://eslint.org/docs/rules/jsx-quotes
         'jsx-quotes': ['error', 'prefer-single'],
@@ -218,25 +229,25 @@ module.exports = {
         'key-spacing': ['error', { 'beforeColon': false, 'afterColon': true }],
         // Maximum nested callbacks
         // http://eslint.org/docs/rules/max-nested-callbacks
-        'max-nested-callbacks': ['warn', 3],
+        'max-nested-callbacks': ['error', 3],
         // Avoid multiple empty lines (max 2)
         // http://eslint.org/docs/rules/no-multiple-empty-lines
-        'no-multiple-empty-lines': 'warn',
+        'no-multiple-empty-lines': 'error',
         // Quote props only if needed
         // http://eslint.org/docs/rules/quote-props
-        'quote-props': ['warn', 'as-needed'],
+        'quote-props': ['error', 'as-needed'],
         // Do not use variable before they are defined
         // http://eslint.org/docs/rules/no-use-before-define
         'no-use-before-define': 'error',
         // Switch must have default case, even if empty
         // http://eslint.org/docs/rules/default-case
         'default-case': 'error',
-        // Prefer foo.bar instead of foo['bar']
+        // Prefer foo.bar instead of foo["bar"]
         // http://eslint.org/docs/rules/dot-notation
-        'dot-notation': 'warn',
+        'dot-notation': 'error',
         // Alert should not be used
         // http://eslint.org/docs/rules/no-alert
-        'no-alert': 'warn',
+        'no-alert': 'error',
         // Allowing console logging
         // http://eslint.org/docs/rules/no-console
         'no-console': 'off',
@@ -255,13 +266,13 @@ module.exports = {
         // No multi line string (use backquote instead of \ in end of line)
         // http://eslint.org/docs/rules/no-multi-str
         'no-multi-str': 'error',
-        // No primitive wrapper
+        // No primitive wrapper 
         // http://eslint.org/docs/rules/no-new-wrappers
         'no-new-wrappers': 'error',
         // No variable redeclare
         // http://eslint.org/docs/rules/no-redeclare
         'no-redeclare': 'error',
-        // No return with an assign
+        // No return with an assign 
         // http://eslint.org/docs/rules/no-return-assign
         'no-return-assign': 'error',
         // No comparing a variable with itself
@@ -276,7 +287,7 @@ module.exports = {
         // No TODO or fixme
         // http://eslint.org/docs/rules/no-warning-commentss
         'no-warning-comments': ['warn', { 'terms': ['todo', 'fixme'], 'location': 'anywhere' }],
-        // Use radix in parseInt
+        // Use radix in parseInt 
         // http://eslint.org/docs/rules/radix
         'radix': 'error',
         // Wrap immediate function call in parenthesis
@@ -300,10 +311,10 @@ module.exports = {
         // Error on extra semi colon
         // http://eslint.org/docs/rules/no-extra-semi
         'no-extra-semi': 'error',
-        // No reassign on function
+        // No reassign on function 
         // http://eslint.org/docs/rules/no-func-assign
         'no-func-assign': 'error',
-        // No sparse arrays
+        // No sparse arrays 
         // http://eslint.org/docs/rules/no-sparse-arrays
         'no-sparse-arrays': 'error',
         // No unreachable code
@@ -322,18 +333,6 @@ module.exports = {
         // http://eslint.org/docs/rules/arrow-spacing
         'arrow-spacing': 'error',
         // Ensure spacing around keywords
-        'keyword-spacing': 'error',
-        // Ensure that function parameter are not reassigned
-        'no-param-reassign': ['error', { 'props': true }],
-        // Ensure proper use of Array function https://eslint.org/docs/rules/array-callback-return
-        'array-callback-return': 'error',
-        // Ensure consistent behaviour for function https://eslint.org/docs/rules/consistent-return
-        'consistent-return': 'error',
-        // Ensure there is no call to arguments.caller https://eslint.org/docs/rules/no-caller
-        'no-caller': 'error',
-        // Ensure there is no empty function without comments https://eslint.org/docs/rules/no-empty-function
-        'no-empty-function': 'error',
-        // Ensure the usage of curly braces for multi-line blocks
-        curly: ['error', 'multi-line']
+        'keyword-spacing': 'error'
     }
 };
